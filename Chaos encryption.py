@@ -41,7 +41,7 @@ def write_encrytpion_shp(ori_shp, outputfile, En_X, En_Y):
     '''2.复制一个新的图层'''
     layer = ds.GetLayer(0)
     newds = driver.CreateDataSource(outputfile)
-    pt_layer = newds.CopyLayer(layer, 'a')  # 第1个参数是OGR的Layer对象，第2个参数是要生成图层的名称。对于Shapefile来说，这个名称是没有用的，但必须给这个字符串赋变量值。
+    pt_layer = newds.CopyLayer(layer, 'a') 
     newds.Destroy()
     nds = ogr.Open(outputfile, 1)
     nlayer = nds.GetLayer(0)
@@ -72,11 +72,11 @@ def Tent(feature_num, XList, x0, a, t0):
             else:
                 xi = a * (1 - xi)
             Li.append(xi)
-        cLi = Li[t0:]  # 舍去固定次数产生的迭代值
+        cLi = Li[t0:]  
         # 向下取整
         for j in cLi:
             x = int(N * j) % N
-            RcLi.append(x)  # 取整后的混沌序列
+            RcLi.append(x)  
         for j in range(0, len(XList[i])):
             XList[i][j], XList[i][RcLi[j]] = XList[i][RcLi[j]], XList[i][j]
     return XList
